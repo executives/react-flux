@@ -1,5 +1,5 @@
 $ = jQuery = require('jquery');
+var React = require('react');
+var Home = require('./components/homePage.js');
 
-var App = console.log('Hello World from Broswerify');
-
-module.exports = App;
+React.render(<Home />, document.getElementById('app'));
