@@ -49310,11 +49310,23 @@ var AuthorForm = React.createClass({displayName: "AuthorForm",
             React.createElement("form", null, 
                 React.createElement("h1", null, "Manage Author"), 
                 React.createElement("label", {htmlFor: "firstName"}, "First Name"), 
-                React.createElement("input", {type: "text", name: "firstName", className: "form-control", placeholder: "First Name", ref: "firstName", value: ""}), 
+                React.createElement("input", {type: "text", 
+                    name: "firstName", 
+                    className: "form-control", 
+                    placeholder: "First Name", 
+                    ref: "firstName", 
+                    value: this.props.author.firstName, 
+                    onChange: this.props.onChange}), 
                 React.createElement("br", null), 
 
                 React.createElement("label", {htmlFor: "lastName"}, "Last Name"), 
-                React.createElement("input", {type: "text", name: "lastName", className: "form-control", placeholder: "Last Name", ref: "lastName", value: ""}), 
+                React.createElement("input", {type: "text", 
+                    name: "lastName", 
+                    className: "form-control", 
+                    placeholder: "Last Name", 
+                    ref: "lastName", 
+                    value: this.props.author.lastName, 
+                    onChange: this.props.onChange}), 
                 React.createElement("br", null), 
 
                 React.createElement("input", {type: "submit", value: "Save", className: "btn btn-default"})
@@ -49323,7 +49335,7 @@ var AuthorForm = React.createClass({displayName: "AuthorForm",
     }
 });
 
-module.exports = AuthorForm
+module.exports = AuthorForm;
 
 },{"react":197}],203:[function(require,module,exports){
 "use strict";
@@ -49403,10 +49415,22 @@ var React = require('react');
 var AuthorForm = require('./authorForm');
 
 var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
-    
+    getInitialState: function() {
+        return {
+            author: { id: '', firstName: '', lastName: ''}
+        };
+    },
+
+    setAuthorState: function(event) {
+        var field = event.target.name;
+        var value = event.target.value;
+        this.state.author[field] = value;
+        return this.setState({author: this.state.author});
+    },
+
     render: function() {
         return (
-            React.createElement(AuthorForm, null)
+            React.createElement(AuthorForm, {author: this.state.author, onChange: this.setAuthorState})
         );
     }
 });
