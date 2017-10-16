@@ -19,6 +19,7 @@ var config = {
         css: [
             'node_modules/bootstrap/dist/css/bootstrap.min.css',
             'node_modules/bootstrap/dist/css/bootstrap-them.min.css',
+            'node_modules/toastr/toastr.css',
             './src/*.css'
         ],
         dist: './dist',
